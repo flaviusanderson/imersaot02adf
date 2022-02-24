@@ -1,0 +1,9 @@
+{
+	"name": "adf-imersaot02flavius",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "969663a4-0d4c-46e2-aed8-3fa50021ff5d",
+		"tenantId": "63474290-3700-401b-bc81-f0b095ec8317"
+	}
+}
