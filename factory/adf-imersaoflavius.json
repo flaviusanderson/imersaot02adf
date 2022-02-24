@@ -1,0 +1,9 @@
+{
+	"name": "adf-imersaoflavius",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a5aeaf7e-6ce4-4445-bffc-d7465c29f9ca",
+		"tenantId": "63474290-3700-401b-bc81-f0b095ec8317"
+	}
+}
