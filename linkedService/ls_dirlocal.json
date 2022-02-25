@@ -1,0 +1,23 @@
+{
+	"name": "ls_dirlocal",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\Users\\Flavius Anderson\\Documents\\AZURE_CURSOS\\ImersaoLuiz\\azure_teste_local",
+			"userId": "azure_teste",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_key_vault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "kvsenhausuariolocal"
+			}
+		},
+		"connectVia": {
+			"referenceName": "ir-localsti",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
