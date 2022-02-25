@@ -1,0 +1,21 @@
+{
+	"name": "ls_sqlserverlocal",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_key_vault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "kvstringconnsqllocal"
+			}
+		},
+		"connectVia": {
+			"referenceName": "ir-localsti",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
