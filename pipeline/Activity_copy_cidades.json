@@ -28,8 +28,11 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "use sqldb-imersaoflavius-dev\ngo\ntruncate table SalesLT.tb_cidades1;\ngo",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -58,6 +61,75 @@
 						"parameters": {
 							"schemaName": "SalesLT",
 							"tableName": "tb_cidades1"
+						}
+					}
+				]
+			},
+			{
+				"name": "Copy data2",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "upsert",
+						"upsertSettings": {
+							"useTempDB": true,
+							"keys": [
+								"cod_cidade"
+							]
+						},
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_generic_teste",
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaName": "SalesLT",
+							"tableName": "tb_cidades1"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_generic_teste",
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaName": "SalesLT",
+							"tableName": "tb_cidades2"
 						}
 					}
 				]
